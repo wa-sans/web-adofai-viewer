@@ -90,7 +90,7 @@ function render()
   for(var i=0;i<objs.length;i++)
   {
     var t=objs[i];
-    if(camera.x-camera.zoom*7<t.x&&t.x<camera.x+camera.zoom*7&&camera.y-camera.zoom*7<t.y&&t.y<camera.y+camera.zoom*7)
+    if(camera.x-camera.zoom*7<t.x&&t.x<camera.x+camera.zoom*7&&camera.y-camera.zoom*4<t.y&&t.y<camera.y+camera.zoom*4)
     {
       t.draw();
     }
