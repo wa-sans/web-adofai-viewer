@@ -21,23 +21,7 @@ var camera=
 {
   x:0,
   y:0,
-  baseX:0,
-  baseY:0,
-  moveX:0,
-  moveY:0,
-  baseRotate:0,
-  moveRotate:1,
-  rotate:0,
-  baseZoom:1,
-  moveZoom:1,
-  zoom:1,
-  relative:"Player",
-  from:{},
-  player:
-  {
-    x:0,
-    y:0
-  }
+  zoom:1
 };
 
 function loadMap(json)
@@ -103,22 +87,14 @@ function render()
 {
   ctx.fillStyle='#ffffff';
   ctx.fillRect(0,0,w,h);
-  ctx.translate(w/2,h/2);
-  ctx.rotate(-camera.rotate/180*Math.PI);
-  ctx.translate(-w/2,-h/2);
-  camera.zoom*=1;
   for(var i=0;i<objs.length;i++)
   {
     var t=objs[i];
-    if(camera.x-7*camera.zoom<t.x&&t.x<camera.x+7*camera.zoom&&camera.y-4*camera.zoom<t.y&&t.y<camera.y+4*camera.zoom)
+    if(camera.x-camera.zoom*7<t.x&&t.x<camera.x+camera.zoom*7&&camera.y-camera.zoom*7<t.y&&t.y<camera.y+camera.zoom*7)
     {
       t.draw();
     }
   }
-  camera.zoom/=1;
-  ctx.translate(w/2,h/2);
-  ctx.rotate(camera.rotate/180*Math.PI);
-  ctx.translate(-w/2,-h/2);
   window.requestAnimationFrame(render);
 }
 render();
